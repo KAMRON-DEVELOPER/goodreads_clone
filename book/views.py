@@ -7,9 +7,9 @@ def book_list(request):
     return render(request, 'book/book_list.html', {'books' : books})
 
 
-def book_detail(request):
-    books = Book.objects.all()
-    return render(request, 'book/book_detail.html')
+def book_detail(request, id):
+    book = Book.objects.get(id)
+    return render(request, 'book/book_detail.html', {'book' : book})
 
 
 def book_update(request):
