@@ -9,9 +9,9 @@ def book_list(request):
 
 def book_detail(request):
     books = Book.objects.all()
-    return render(request, 'book/books.html')
+    return render(request, 'book/book_detail.html')
 
 
 def book_update(request):
     books = Book.objects.all()
-    return render(request, 'book/books.html')
+    return render(request, 'book/book_update.html')
