@@ -22,7 +22,7 @@ class CustomUser(AbstractUser, BaseModel):
     gender = models.CharField(max_length=20, choices=GENDER_CHOICE.choices, null=True, blank=True)
     employment = models.CharField(max_length=20, choices=EMPLOYMENT_CHOICE.choices, null=True, blank=True)
     picture = models.ImageField(upload_to='users_pictures/', default='users_pictures/user.png',
-                                validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])])
+                                validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])], null=True, blank=True)
     
     def __str__(self):
         return self.username
