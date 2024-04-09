@@ -2,6 +2,21 @@
 
 
 {% block content %}
-    <h2>Register Page</h2>
+    <form action="{% url 'register' %}">
+        <div class="grid bg-black-200">
+            <div class="input">
+                <label for="username">username</label>
+                <input type="text" id='username', name='username'>
+            </div>
+            <div class="input">
+                <label for="email">email</label>
+                <input type="email" id='email', name='email'>
+            </div>
+            <div class="input">
+                <label for="pass">password</label>
+                <input type="password" id='pass', name='password'>
+            </div>
+        </div>
+    </form>
 {% endblock content %}
     
