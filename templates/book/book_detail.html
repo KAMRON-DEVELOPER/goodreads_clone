@@ -2,5 +2,14 @@
 
 
 {% block content %}
+    <a href="{% url 'list' %}"></a>
 
+    <div class="book-detail">
+        <h3>{{ book.title }}</h3>
+        <small>author: {{ book.author.full_name }}</small><br>
+        <small>created: {{ book.create_time }}</small>
+        <p>{{ book.description|truncatewords:50 }}</p>
+        <small>isbn: {{ book.isbn }}</small>
+        <h5>price: {{ book.price }} ming so'm</h5>
+    </div>
 {% endblock content %}

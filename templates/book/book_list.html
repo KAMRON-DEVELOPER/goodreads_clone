@@ -5,11 +5,12 @@
     <div class='book-list'>
         {% for book in books %}
             <div>
-                <h4><a href="{% url 'detail' book.id %}">{{ book.title }}</a></h4>
-                <small>{{ book.author.full_name }}</small>
-                <p>{{ book.description }}</p>
-                <small>{{ book.isbn }}</small>
-                <h5>{{ book.price }}</h5>
+                <h3><a href="{% url 'detail' book.id %}">{{ book.title }}</a></h3>
+                <small>author: {{ book.author.full_name }}</small><br>
+                <small>created: {{ book.create_time }}</small>
+                <p>{{ book.description|truncatewords:50 }}</p>
+                <small>isbn: {{ book.isbn }}</small>
+                <h5>price: {{ book.price }} ming so'm</h5>
             </div>
         {% endfor %}
     </div>  
