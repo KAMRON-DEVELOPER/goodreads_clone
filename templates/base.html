@@ -1,13 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-    <h1>GoodReads.com</h1>
-    
+
+    <h1 class='title text-2xl text-orange-700 font-medium'><a href="{% url 'list' %}">GoodReads.com</a></h1>
+
     {% block content %}
     {% endblock content %}
         

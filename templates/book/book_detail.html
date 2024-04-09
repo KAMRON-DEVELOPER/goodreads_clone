@@ -2,14 +2,14 @@
 
 
 {% block content %}
-    <a href="{% url 'list' %}">Home</a>
+<div class="book-detail">
+        <a href="{% url 'list' %}">Home</a>
 
-    <div class="book-detail">
-        <h3>{{ book.title }}</h3>
-        <small>author: {{ book.author.full_name }}</small><br>
-        <small>created: {{ book.create_time }}</small>
-        <p>{{ book.description }}</p>
-        <small>isbn: {{ book.isbn }}</small>
-        <h5>price: {{ book.price }} ming so'm</h5>
+        <h3 class='text-xl font-bold text-orange-700'>{{ book.title }}</h3>
+        <small class='text-xs'>author: {{ book.author.full_name }}</small><br>
+        <small class='text-xs'>isbn: {{ book.isbn }}</small><br>
+        <small class='text-xs'>created: {{ book.create_time }}</small>
+        <p>{{ book.description|truncatewords:50 }}</p>
+        <h5 class='font-semibold'>price: {{ book.price }} ming so'm</h5>
     </div>
 {% endblock content %}

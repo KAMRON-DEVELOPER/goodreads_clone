@@ -4,13 +4,13 @@
 {% block content %}
     <div class='book-list'>
         {% for book in books %}
-            <div>
-                <h3><a href="{% url 'detail' book.id %}">{{ book.title }}</a></h3>
-                <small>author: {{ book.author.full_name }}</small><br>
-                <small>created: {{ book.create_time }}</small>
+            <div class='my-5'>
+                <h3 class='text-xl font-bold text-orange-700'><a href="{% url 'detail' book.id %}">{{ book.title }}</a></h3>
+                <small class='text-xs'>author: {{ book.author.full_name }}</small><br>
+                <small class='text-xs'>isbn: {{ book.isbn }}</small><br>
+                <small class='text-xs'>created: {{ book.create_time }}</small>
                 <p>{{ book.description|truncatewords:50 }}</p>
-                <small>isbn: {{ book.isbn }}</small>
-                <h5>price: {{ book.price }} ming so'm</h5>
+                <h5 class='font-semibold'>price: {{ book.price }} ming so'm</h5>
             </div>
         {% endfor %}
     </div>  
