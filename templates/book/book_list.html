@@ -2,9 +2,11 @@
 
 
 {% block content %}
-    <div>
+    <div class='book-list'>
         {% for book in books %}
-            
+            <div>
+                <h4><a href="{% url 'detail' book.id %}">{{ book.title }}</a></h4>
+            </div>
         {% endfor %}
     </div>  
 {% endblock content %}
