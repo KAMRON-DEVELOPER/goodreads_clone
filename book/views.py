@@ -8,7 +8,7 @@ def book_list(request):
 
 
 def book_detail(request, id):
-    book = Book.objects.get(id)
+    book = Book.objects.get(id=id)
     return render(request, 'book/book_detail.html', {'book' : book})
 
 
