@@ -6,6 +6,10 @@
         {% for book in books %}
             <div>
                 <h4><a href="{% url 'detail' book.id %}">{{ book.title }}</a></h4>
+                <small>{{ book.author.full_name }}</small>
+                <p>{{ book.description }}</p>
+                <small>{{ book.isbn }}</small>
+                <h5>{{ book.price }}</h5>
             </div>
         {% endfor %}
     </div>  
