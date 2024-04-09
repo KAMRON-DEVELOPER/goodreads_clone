@@ -2,14 +2,17 @@
 
 
 {% block content %}
-<div class="book-detail">
-        <a href="{% url 'list' %}">Home</a>
-
-        <h3 class='text-xl font-bold text-orange-700'>{{ book.title }}</h3>
-        <small class='text-xs'>author: {{ book.author.full_name }}</small><br>
-        <small class='text-xs'>isbn: {{ book.isbn }}</small><br>
-        <small class='text-xs'>created: {{ book.create_time }}</small>
-        <p>{{ book.description|truncatewords:50 }}</p>
-        <h5 class='font-semibold'>price: {{ book.price }} ming so'm</h5>
+<div class='book-detail bg-orange-100 rounded-[12px] p-4 shadow-xl'>
+    <div class="flex">
+        <img src="{{ book.book_picture.url }}" class='object-cover w-36 book_img rounded-tl-[8px]' alt="book.png">
+        <div class='ms-4'>
+            <h3 class='text-xl font-bold text-orange-700'><a href="{% url 'detail' book.id %}"># {{ book.title }}</a></h3>
+            <small class='text-xs'>author: {{ book.author.full_name }}</small><br>
+            <small class='text-xs'>isbn: {{ book.isbn }}</small><br>
+            <small class='text-xs'>created: {{ book.create_time }}</small>
+        </div>
     </div>
+    <p class='text-justify'>{{ book.description|truncatewords:50 }}</p>
+    <h5 class='font-semibold'>price: {{ book.price }} ming so'm</h5>
+</div>
 {% endblock content %}

@@ -1,13 +1,21 @@
 /* global */
-.title {
-    color: green;
+.nav {
     margin: 0px 140px;
 }
 
+
+/* book_list */
 .book-list {
     margin: 0px 140px;
 }
 
+
+/* book_detail */
 .book-detail {
     margin: 0px 140px;
+}
+
+.book-list .book-card .book_img {
+    width: 144px;
+    height: 122px;
 }

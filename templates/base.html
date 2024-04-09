@@ -9,8 +9,11 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-
-    <h1 class='title text-2xl text-orange-700 font-medium'><a href="{% url 'list' %}">GoodReads.com</a></h1>
+    <div class="nav flex items-center bg-orange-100 rounded-b-[12px] px-2 py-2 mb-16 align-middle">
+        <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2'><a href="{% url 'list' %}">GoodReads.com</a></h1>
+        <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2 ms-auto'><a href="{% url 'list' %}">Login</a></h1>
+        <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2 ms-2'><a href="{% url 'list' %}">Register</a></h1>
+    </div>
 
     {% block content %}
     {% endblock content %}
