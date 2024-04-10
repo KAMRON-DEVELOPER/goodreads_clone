@@ -10,13 +10,14 @@ class RegisterView(View):
         return render(request, 'users/register.html', {'form' : form})
     
     def post(self, request):
-        form = RegisterForm(data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            email = form.cleaned_data['email']
+        # form = RegisterForm(request.POST)
+        # if form.is_valid():
+        #     username = form.cleaned_data['username']
+        #     password = form.cleaned_data['password']
+        #     email = form.cleaned_data['email']
             
-        print(username)
+        # print(username)
+        print(request.POST['full_name'])
         return redirect('register')
     
 

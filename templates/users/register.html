@@ -1,54 +1,43 @@
-{% include 'base.html' %}
-
-
-{% block content %}
-<div class='register-card bg-orange-100 mx-[140px] py-8'>
-    <form action="{% url 'register' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button class='bg-blue-500 rounded-full px-2'>Submit</button>
-    </form>
-</div>
-{% endblock content %}
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{% comment %} 
-<form action="{% url 'register' %}">
+{% include 'base.html' %} {% block content %}
+<div class="register-card bg-orange-100 mx-[140px] py-8">
+  <form action="{% url 'register' %}" method="post">
     <div class="grid bg-black-200">
-        <div class="input">
-            <label for="username">username</label>
-            <input type="text" id='username', name='username' required>
-        </div>
-        <div class="input">
-            <label for="email">email</label>
-            <input type="email" id='email', name='email' required>
-        </div>
-        <div class="input">
-            <label for="pass">password</label>
-            <input type="password" id='pass', name='password' required>
-        </div>
+      <div class="input">
+        <label for="username">username</label>
+        <input type="text" id="username" , name="username" required />
+      </div>
+      <div class="input">
+        <label for="email">email</label>
+        <input type="email" id="email" , name="email" required />
+      </div>
+      <div class="input">
+        <label for="pass">password</label>
+        <input type="password" id="pass" , name="password" required />
+      </div>
     </div>
+  </form>
+</div>
+{% endblock content %} {% comment %}
+
+<form action="{% url 'register' %}" method="post">
+  {% csrf_token %} {{ form }}
+  <button class="bg-blue-500 rounded-full px-2">Submit</button>
+</form>
+
+<form action="{% url 'register' %}">
+  <div class="grid bg-black-200">
+    <div class="input">
+      <label for="username">username</label>
+      <input type="text" id="username" , name="username" required />
+    </div>
+    <div class="input">
+      <label for="email">email</label>
+      <input type="email" id="email" , name="email" required />
+    </div>
+    <div class="input">
+      <label for="pass">password</label>
+      <input type="password" id="pass" , name="password" required />
+    </div>
+  </div>
 </form>
 {% endcomment %}
