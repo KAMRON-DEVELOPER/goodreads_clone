@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.views import View
-from .forms import UserChangeForm, UserCreationForm, RegisterForm
+from users.models import CustomUser
+from .forms import UserChangeForm, UserCreationForm, RegisterForm, LoginForm
+from django.contrib.auth import login
 
 
 class RegisterView(View):
@@ -10,16 +12,34 @@ class RegisterView(View):
         return render(request, 'users/register.html', {'form' : form})
     
     def post(self, request):
-        # form = RegisterForm(request.POST)
-        # if form.is_valid():
-        #     username = form.cleaned_data['username']
-        #     password = form.cleaned_data['password']
-        #     email = form.cleaned_data['email']
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
+            user = CustomUser.objects.create(username=username, email=email)
+            user.set_password(password)
+            user.save()
             
-        # print(username)
-        print(request.POST['full_name'])
+        print(request.user)
+        
+        # username = request.POST['username']
+        # email = request.POST['email']
+        # password = request.POST['password']
+        # user = CustomUser.objects.create(username=username, email=email)
+        # user.set_password(password)
+        # user.save()
+        
         return redirect('register')
     
 
-def login(request):
-    return render(request, 'users/login.html')
+class LoginView(View):
+    def get(self, request):
+        form = LoginForm()
+        return render(request, 'users/login.html', {'form' : form})
+    
+    def post(self, request):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            login(request.user)
+            return redirect('list')

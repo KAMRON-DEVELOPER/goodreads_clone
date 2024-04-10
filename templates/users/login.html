@@ -2,6 +2,15 @@
 
 
 {% block content %}
-    <h2>Login Page</h2>
+<div class="login-card bg-orange-100 mx-[140px] py-8">
+  <h1 class='text-center font-bold text-2xl'>Login</h1>
+  <form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+
+      {{ form }}
+
+      <button class='bg-blue-600 rounded-[6px] w-80'>Login</button>
+  </form>
+</div>
 {% endblock content %}
-    
+
