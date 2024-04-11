@@ -4,6 +4,7 @@ from django.views import View
 from users.models import CustomUser
 from .forms import UserChangeForm, UserCreationForm, RegisterForm, LoginForm
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class RegisterView(View):
@@ -55,10 +56,11 @@ class LoginView(View):
 
 class DashboardView(View):
     def get(self, request):
-        form = LoginForm()
+        user = request.user
+        return render(request, 'users/profile.html', {'user': user})
         
         
-class LogoutView(View):
+class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         return redirect('list')
