@@ -11,8 +11,13 @@
 <body>
     <div class="nav flex items-center bg-orange-100 rounded-b-[12px] px-2 py-2 mb-16 align-middle">
         <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2'><a href="{% url 'list' %}">GoodReads.com</a></h1>
-        <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2 ms-auto'><a href="{% url 'login' %}">Login</a></h1>
-        <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2 ms-2'><a href="{% url 'register' %}">Register</a></h1>
+        {% if request.user.is_authenticated %}
+        <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2 ms-auto'><a href="{% url 'dashboard' %}">Dashboard</a></h1>
+        <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2 ms-2'><a href="{% url 'logout' %}">Logout</a></h1>
+        {% else %}
+            <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2 ms-auto'><a href="{% url 'login' %}">Login</a></h1>
+            <h1 class='text-2xl text-orange-700 font-medium bg-orange-200 rounded-[10px] inline p-2 ms-2'><a href="{% url 'register' %}">Register</a></h1>
+        {% endif %}
     </div>
 
     {% block content %}
