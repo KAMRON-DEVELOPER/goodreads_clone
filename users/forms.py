@@ -13,6 +13,16 @@ class RegisterForm(forms.Form):
     username = forms.CharField(label="username", max_length=40)
     email = forms.EmailField(label='email', max_length=55)
     password = forms.CharField(label='password', max_length=16)
+    
+    def save(self):
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        email = self.cleaned_data['email']
+        user = CustomUser.objects.create(username=username, email=email)
+        user.set_password(password)
+        user.save()
+        
+        return user
         
 
 class LoginForm(forms.Form):
@@ -21,7 +31,11 @@ class LoginForm(forms.Form):
     password = forms.CharField(label='password', max_length=16)
 
 
-
+class ProfileChangeForm(forms.ModelForm):
+    
+    class Meta:
+        model = CustomUser
+        fields = '__all__'
 
 
 

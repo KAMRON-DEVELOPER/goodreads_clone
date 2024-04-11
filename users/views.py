@@ -15,22 +15,7 @@ class RegisterView(View):
     def post(self, request):
         form = RegisterForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            email = form.cleaned_data['email']
-            user = CustomUser.objects.create(username=username, email=email)
-            user.set_password(password)
-            user.save()
-            
-        print(request.user)
-        
-        # username = request.POST['username']
-        # email = request.POST['email']
-        # password = request.POST['password']
-        # user = CustomUser.objects.create(username=username, email=email)
-        # user.set_password(password)
-        # user.save()
-        
+            form.save()
         return redirect('register')
     
 

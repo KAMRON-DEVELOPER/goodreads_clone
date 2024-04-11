@@ -2,8 +2,51 @@
 
 
 {% block content %}
-<div class="register-card bg-orange-100 mx-[140px] py-8">
+<div class="register-card bg-orange-100 mx-[140px] py-8 flex">
+    <img src="{{ user.picture.url }}" alt="profile_pic" class='w-36'>
 
+    <div>
+        {% if user.username %}
+            <h3>username: {{ user.username }}</h3>
+        {% endif %}
+
+        <h4>
+            {% if user.first_name %}
+                full name:
+                {{ user.first_name }}
+            {% endif %}
+
+            {% if user.last_name %}
+                {{ user.last_name }}
+            {% endif %}
+        </h4>
+
+        <h4>
+            {% if user.date_of_birth %}
+                birth date:
+                {{ user.date_of_birth }}
+            {% endif %}
+        </h4>
+
+        <h4>
+            {% if user.date_joined %}
+                date joined:
+                {{ user.date_joined }}
+            {% endif %}
+        </h4>
+
+        <h4>
+            {% if user.gender %}
+                {{ user.gender }}
+            {% endif %}
+        </h4>
+
+        <h4>
+            {% if user.employment %}
+                {{ user.employment }}
+            {% endif %}
+        </h4>
+    </div>
 </div>
 {% endblock content %}
 
