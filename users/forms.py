@@ -1,12 +1,19 @@
+from typing import Any
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from users.models import CustomUser
 
 
-class CustomUserCreationForm(UserCreationForm):
+class RegisterModelForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('username', 'email', 'password')
+        
+    def save(self, commit=True):
+        user = super().save(commit)
+        user.set_password(self.cleaned_data['password'])
+        user.save()
+        return user
 
 
 class RegisterForm(forms.Form):
@@ -31,12 +38,22 @@ class LoginForm(forms.Form):
     password = forms.CharField(label='password', max_length=16)
 
 
-class ProfileChangeForm(forms.ModelForm):
-    
+class ProfileChangeModelForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = '__all__'
+        fields = ['username', 'first_name', 'last_name', 'email', 'gender', 'employment', 'date_of_birth', 'picture']
 
+    # def save(self, commit=True):
+    #     user = super(ProfileChangeModelForm, self).save(commit=False)
+    #     password = self.cleaned_data.get('password')
+
+    #     if password:
+    #         user.set_password(password)
+
+    #     if commit:
+    #         user.save()
+
+    #     return user
 
 
 

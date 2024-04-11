@@ -2,6 +2,18 @@
 
 
 {% block content %}
+<div class='book-list mb-4'>
+    <form method='get' class='bg-gray-100 p-2'>
+        <input type="text" placeholder='search...' class='p-1 me-2 border rounded' name='q'>
+        <button class='bg-gray-300 p-1 rounded'>search</button>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}  
+    {% endif %}
+</div>
     <div class='book-list grid grid-cols-2 gap-x-16 gap-y-16'>
         {% for book in books %}
             <div class='book-card bg-orange-100 rounded-[12px] p-4 shadow-xl'>
@@ -16,6 +28,7 @@
                 </div>
                 <p class='text-justify'>{{ book.description|truncatewords:50 }}</p>
                 <h5 class='font-semibold'>price: {{ book.price }} ming so'm</h5>
+                <h5>{{ reviews_count }}</h5>
             </div>
         {% endfor %}
     </div>  

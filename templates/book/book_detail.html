@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<div class='book-detail bg-orange-100 rounded-[12px] p-4 shadow-xl'>
+<div class='book-detail bg-orange-100 rounded-[12px] p-4 shadow-xl mb-4'>
     <div class="flex">
         <img src="{{ book.book_picture.url }}" class='object-cover w-36 book_img rounded-tl-[8px]' alt="book.png">
         <div class='ms-4'>
@@ -14,5 +14,29 @@
     </div>
     <p class='text-justify'>{{ book.description|truncatewords:50 }}</p>
     <h5 class='font-semibold'>price: {{ book.price }} ming so'm</h5>
+</div>
+
+<div class='book-detail bg-orange-100 rounded-[12px] p-4 shadow-xl'>
+    <h4>reviews count: {{ reviews.count }}</h4>
+    
+    {% for review in reviews %}
+        <div class='bg-orange-200 rounded-[12px] p-4 shadow-xl mb-4'>
+            <div class='flex'>
+                <div class='me-4'>
+                    <img src="{{ review.user_id.picture.url }}" class='w-8 h-8 object-contain rounded-full' alt="user.png">
+                    <small class='font-bold'>{{ review.user_id }}</small>
+                </div>
+                <h5>
+                    {% if review.given_stars == 5 %}⭐⭐⭐⭐⭐{{ review.given_stars }}{% endif %}
+                    {% if review.given_stars == 4 %}⭐⭐⭐⭐{{ review.given_stars }}{% endif %}
+                    {% if review.given_stars == 3 %}⭐⭐⭐{{ review.given_stars }}{% endif %}
+                    {% if review.given_stars == 2 %}⭐⭐{{ review.given_stars }}{% endif %}
+                    {% if review.given_stars == 1 %}⭐{{ review.given_stars }}{% endif %}
+                </h5>
+            </div>
+            <h5>{{ review.comment }}</h5>
+        </div>
+    {% endfor %}
+
 </div>
 {% endblock content %}

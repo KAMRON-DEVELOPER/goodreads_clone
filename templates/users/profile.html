@@ -48,5 +48,14 @@
         </h4>
     </div>
 </div>
+
+<div class="bg-orange-100 mx-[140px] py-8">
+    <form action="{% url 'dashboard' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class='bg-blue-600 rounded-[6px] w-80'>Save</button>
+    </form>
+</div>
+
 {% endblock content %}
 
