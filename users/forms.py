@@ -2,6 +2,7 @@ from typing import Any
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from users.models import CustomUser
+from django.core.mail import send_mail
 
 
 class RegisterModelForm(forms.ModelForm):
@@ -14,6 +15,15 @@ class RegisterModelForm(forms.ModelForm):
         user.set_password(self.cleaned_data['password'])
         user.save()
         return user
+
+        if user.email:
+            send_mail(
+                subject='Welcome home!',
+                message=f"Hi user {user.username}!",
+                from_email='atajanovkamronbek2003@gmail.com',
+                recipient_list=[user.email],
+            )
+
 
 
 class RegisterForm(forms.Form):
