@@ -38,5 +38,12 @@
         </div>
     {% endfor %}
 
+    <div class='bg-orange-200 rounded-[12px] p-4 shadow-xl mb-4'>
+        <form method='post'>
+            {% csrf_token %}    
+            {{ form }}
+            <button class='bg-blue-600 rounded-[6px] w-80'>leave comment</button>
+        </form>
+    </div>
 </div>
 {% endblock content %}
