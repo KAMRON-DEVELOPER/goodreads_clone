@@ -16,13 +16,13 @@ class RegisterModelForm(forms.ModelForm):
         user.save()
         return user
 
-        if user.email:
-            send_mail(
-                subject='Welcome home!',
-                message=f"Hi user {user.username}!",
-                from_email='atajanovkamronbek2003@gmail.com',
-                recipient_list=[user.email],
-            )
+        # if user.email:
+        #     send_mail(
+        #         subject='Welcome home!',
+        #         message=f"Hi user {user.username}!",
+        #         from_email='atajanovkamronbek2003@gmail.com',
+        #         recipient_list=[user.email],
+        #     )
 
 
 

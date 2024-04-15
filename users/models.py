@@ -26,5 +26,8 @@ class CustomUser(AbstractUser, BaseModel):
     
     def __str__(self):
         return self.username
+    
+    # def save(self):
+    #     super().save()
 
     
