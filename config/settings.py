@@ -18,10 +18,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # packages
+    'django_celery_results',
+    'rest_framework',
+    
     # apps
     'users',
     'shared',
     'book',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +145,14 @@ EMAIL_USE_SSL = False
 # result_backend = 'db+sqlite:///results.db'
 
 # task_annotations = {'tasks.add': {'rate_limit': '10/s'}}
+
+
+
+# Celery Configuration Options
+CELERY_TIMEZONE = "Asia/Tashkent"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
