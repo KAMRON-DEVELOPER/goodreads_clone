@@ -18,10 +18,26 @@ app.autodiscover_tasks()
 
 
 @app.task(bind=True, ignore_result=True)
-def send_email(subject, message, recipient_list):
+def send_email():
+
     send_mail(
-        subject,
-        message,
-        "atajanovkamronbek2003@gmail.com",
-        recipient_list
+        subject='Welcome home!',
+        message=f"Hi user Kamronbek",
+        from_email='atajanovkamronbek2003@gmail.com',
+        recipient_list=['atajanovkamronbek2003@gmail.com', 'dangersenator577@gmail.com'],
     )
+
+
+    # send_mail(
+    #     subject,
+    #     message,
+    #     "atajanovkamronbek2003@gmail.com",
+    #     recipient_list
+    # )
+
+
+
+
+
+
+
