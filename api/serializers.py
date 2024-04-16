@@ -9,12 +9,12 @@ class BookSerializer(serializers.ModelSerializer):
         fields = ['title', 'author', 'description', 'isbn', 'price', 'create_time', 'update_time']
         # read_only_fields = ('is_active', 'is_staff')
         
-        extra_kwargs = {
-            'author': {'read_only': True},
-            'isbn': {'read_only': True},
-            'create_time': {'read_only': True},
-            'update_time': {'read_only': True}
-        }
+        # extra_kwargs = {
+        #     'author': {'read_only': True},
+        #     'isbn': {'read_only': True},
+        #     'create_time': {'read_only': True},
+        #     'update_time': {'read_only': True}
+        # }
         
         
 class CustomUserSerializer(serializers.ModelSerializer):

@@ -37,6 +37,14 @@ class BookListApiView(APIView):  # List Api
         serializer = BookSerializer(page_obj, many=True).data
         return paginator.get_paginated_response(serializer)
         # return Response({'books' : serializer}, status=status.HTTP_200_OK)
+        
+    def post(self, request):
+        book_json = request.data
+        serializered_book = BookSerializer(data=book_json)
+        if serializered_book.is_valid():
+            serializered_book.save()
+            return Response({'created book' : serializered_book.data}, status=status.HTTP_201_CREATED)
+        return Response({'response' : 'book has not created successfully', 'error' : serializered_book.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class BookUpdateApiView(APIView):  # List Update Api
