@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.views import View
 from book.models import BookReview
 from django.core import serializers
-from rest_framework import serializers
 from rest_framework.views import APIView
+from .serializers import BookSerializer, BookReviewSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 class BookReviewListView(View):
