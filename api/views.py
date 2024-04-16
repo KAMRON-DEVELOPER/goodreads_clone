@@ -4,7 +4,7 @@ from django.views import View
 from book.models import Book, BookReview
 from django.core import serializers
 from rest_framework.views import APIView
-from .serializers import BookSerializer, BookReviewSerializer
+from .serializers import BookReviewSimpleSerializer, BookSerializer, BookReviewSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics, status
@@ -20,8 +20,10 @@ def books_list_view(request):  # function view
 class BookReviewListView(View):  # Django View
     def get(self, request):
         book_reviews = BookReview.objects.all()
-        json_book_reviews = serializers.serialize('json', BookReview.objects.all())
-        return HttpResponse(json_book_reviews, content_type='application/json')
+        # json_book_reviews = serializers.serialize('json', BookReview.objects.all())
+        json_book_reviews = BookReviewSimpleSerializer(book_reviews, many=True).data
+        # return HttpResponse(json_book_reviews, content_type='application/json')
+        return Response(json_book_reviews)
 
 
 class BookListApiView(APIView):  # List Api
