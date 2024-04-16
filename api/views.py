@@ -17,13 +17,13 @@ def books_list_view(request):  # function view
     return Response(serializer.data)
 
 
-class BookReviewListView(View):  # Django View
+class BookReviewListView(APIView):  # Django View
     def get(self, request):
-        book_reviews = BookReview.objects.all()
         # json_book_reviews = serializers.serialize('json', BookReview.objects.all())
-        json_book_reviews = BookReviewSimpleSerializer(book_reviews, many=True).data
         # return HttpResponse(json_book_reviews, content_type='application/json')
-        return Response(json_book_reviews)
+        book_reviews = BookReview.objects.all()
+        json_book_reviews = BookReviewSimpleSerializer(book_reviews, many=True).data
+        return Response(data=json_book_reviews)
 
 
 class BookListApiView(APIView):  # List Api

@@ -19,6 +19,6 @@ class BookReviewSimpleSerializer(serializers.Serializer):
     book_id = serializers.CharField()
     comment = serializers.CharField()
     given_stars = serializers.IntegerField(min_value=1, max_value=5)
-    create_time = serializers.DateTimeField()
-    update_time = serializers.DateTimeField()
+    # create_time = serializers.DateTimeField()
+    # update_time = serializers.DateTimeField()
 
