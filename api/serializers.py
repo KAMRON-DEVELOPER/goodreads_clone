@@ -24,7 +24,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
 
 class BookReviewSerializer(serializers.ModelSerializer):
-    user_id = CustomUserSerializer()
+    user_id = CustomUserSerializer(read_only=True)
     book_id = BookSerializer()
     
     class Meta:

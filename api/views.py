@@ -60,10 +60,10 @@ class BookDetailApiView(APIView): # List Detail Api
         book.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
-    def put(self, request, id):
+    def patch(self, request, id):
         book = Book.objects.get(id=id)
         book_json = request.data
-        serializered_book = BookSerializer(instance=book ,data=book_json)
+        serializered_book = BookSerializer(instance=book ,data=book_json, partial=True)
         if serializered_book.is_valid():
             serializered_book.save()
             return Response({'updated book' : serializered_book.data})
