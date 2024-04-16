@@ -156,3 +156,10 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
+
+
+REST_FRAMEWORK = {
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 2
+}
+

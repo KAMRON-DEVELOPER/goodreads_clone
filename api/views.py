@@ -8,6 +8,7 @@ from .serializers import BookReviewSimpleSerializer, BookSerializer, BookReviewS
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics, status
+from rest_framework.pagination import PageNumberPagination
 
 
 @api_view(["GET"])
@@ -29,8 +30,13 @@ class BookReviewListView(APIView):  # Django View
 class BookListApiView(APIView):  # List Api
     def get(self, request):
         books = Book.objects.all()
-        serializer = BookSerializer(books, many=True).data
-        return Response({'books' : serializer}, status=status.HTTP_200_OK)
+        
+        paginator = PageNumberPagination()
+        page_obj = paginator.paginate_queryset(books, request)
+        
+        serializer = BookSerializer(page_obj, many=True).data
+        return paginator.get_paginated_response(serializer)
+        # return Response({'books' : serializer}, status=status.HTTP_200_OK)
 
 
 class BookUpdateApiView(APIView):  # List Update Api
@@ -38,14 +44,37 @@ class BookUpdateApiView(APIView):  # List Update Api
 
 
 class BookCreateApiView(APIView):  # List Create Api
-    pass
+    def post(self, request):
+        pass
 
 
-class BookDetailApiView(APIView):  # List Detail Api
-    pass
+class BookDetailApiView(APIView): # List Detail Api
+    
+    def get(self, request, id):
+        book = Book.objects.get(id=id)
+        serializer = BookSerializer(book).data
+        return Response({'book' : serializer}, status=status.HTTP_200_OK)
+    
+    def delete(self, request, id):
+        book = Book.objects.get(id=id)
+        book.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    def put(self, request, id):
+        book = Book.objects.get(id=id)
+        book_json = request.data
+        serializered_book = BookSerializer(instance=book ,data=book_json)
+        if serializered_book.is_valid():
+            serializered_book.save()
+            return Response({'updated book' : serializered_book.data})
+        return Response({'response' : serializered_book.errors})
 
 
 class BookDeleteApiView(APIView):  # List Delete Api
-    pass
+    def delete(self, request, id):
+        book = Book.objects.get(id=id)
+        book.delete()
+        serializer = BookSerializer(book).data
+        return Response({'book' : serializer}, status=status.HTTP_200_OK)
 
 
